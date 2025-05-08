@@ -1,1 +1,3 @@
+# Build the project with the Bazel version below.  Be sure to check this file into your version control system to ensure reproducibility of your builds.
+# BE CAREFUL NOT TO DEFINE THE VERSION IN THIS FILE AND TO SET IT IN .bazeliskrc, too (USE_BAZEL_VERSION = last_rc).
 8.2.1rc1

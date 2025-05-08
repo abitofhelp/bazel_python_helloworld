@@ -1,5 +1,10 @@
 load("@buildifier_prebuilt//:rules.bzl", "buildifier")
-load("@gazelle//:def.bzl", "gazelle")
+
+#load("@gazelle//:def.bzl", "gazelle")
+# The names @pip and @python_39 are values that are repository
+# names. Those names are defined in the MODULES.bazel file.
+load("@pip//:requirements.bzl", "all_data_requirements", "all_requirements", "all_whl_requirements", "requirement")
+load("@python_versions//3.13:defs.bzl", compile_pip_requirements_3_13 = "compile_pip_requirements")
 
 # gazelle:exclude bazel-*
 # gazelle:exclude binding
@@ -8,7 +13,7 @@ load("@gazelle//:def.bzl", "gazelle")
 # gazelle:exclude security
 # gazelle:exclude vendor
 # gazelle:exclude third_party
-gazelle(name = "gazelle")
+#gazelle(name = "gazelle")
 
 # make sure that others can import either using the import or go_default_library naming conventions
 # gazelle:go_naming_convention import_alias
@@ -25,3 +30,18 @@ buildifier(
     mode = "check",
     verbose = True,
 )
+
+# This stanza calls a rule that generates targets for managing pip dependencies
+# with pip-compile for a particular python version.
+compile_pip_requirements_3_13(
+    name = "requirements_3_13",
+    timeout = "moderate",
+    src = "requirements.in",
+    requirements_txt = "requirements_lock_3_13.txt",
+    #requirements_windows = "requirements_windows_3_10.txt",
+)
+
+exports_files([
+    "requirements.in",
+    "requirements_lock_3_13.txt",
+])

@@ -22,6 +22,7 @@ py_binary(
 
 compile_pip_requirements(
     name = "requirements",
-    requirements_in = "requirements.txt",
-    requirements_txt = "requirements_lock.txt",
+    requirements_in = "//:requirements.in",
+    requirements_txt = "//:requirements_lock_3_13.txt",
+    visibility = ["//visibility:public"],
 )

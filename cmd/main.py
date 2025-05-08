@@ -5,7 +5,7 @@ from pkg.hello import say_hi
 
 def greet():
     response = say_hi()
-    return f"The Python package says, '{response}'"
+    return f"The CLI says, '{response}'"
 
 if __name__ == "__main__":
-   cprint(greet(), "red", attrs=["bold"])
+   cprint(greet(), "yellow", attrs=["bold"])
