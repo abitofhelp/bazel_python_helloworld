@@ -228,11 +228,5 @@ dist/*
 .bazelrc.bak
 .bazelrc.org
 vendor/
-d3falcon.azurecr*.gz
-/committer_darwin_amd64_*
-/committer_linux_amd64_*
-/committer_windows_amd64_*
-/infrastructure/OFFBOARD-CLIENT/clients/
-/infrastructure/tls/wildcard
 /tmp/*
 *-linode*
