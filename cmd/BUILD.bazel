@@ -1,0 +1,27 @@
+load("@pip//:requirements.bzl", "requirement")
+load("@rules_python//python:defs.bzl", "py_binary")
+load("@rules_python//python:pip.bzl", "compile_pip_requirements")
+
+py_binary(
+    name = "main",
+    srcs = ["main.py"],
+    deps = [
+        "//pkg:hello_lib",
+        requirement("termcolor"),
+    ],
+)
+
+#py_test(
+#    name = "main_test",
+#    srcs = ["main_test.py"],
+#    deps = [
+#        ":main"
+#    ],
+#    imports = ["."],
+#)
+
+compile_pip_requirements(
+    name = "requirements",
+    requirements_in = "requirements.txt",
+    requirements_txt = "requirements_lock.txt",
+)
